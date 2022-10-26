@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-nozj@8(_41%8k@02iy!v2&x_r%+tud!a=hb&9466wjzm$a@ddq
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['192.168.1.66', '192.168.1.65', '127.0.0.1', 'localhost']
+ALLOWED_HOSTS = ['192.168.1.66', '192.168.1.65', '127.0.0.1', 'localhost', 'wpad.beeline']
 
 
 # Application definition
