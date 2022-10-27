@@ -8,6 +8,7 @@ urlpatterns = [
     path('category/', getAllCategory),
     path('category/<str:pk>', getCategory),
     path('subcategory/all/', getAllSubCategory),
+    path('products/popular/', getPopularProducts),
   #  path('products/', views.ProductsAPIList.as_view(), name='products'),
    # path('products/<str:pk>/', views.ProductsAPIDetailView.as_view(), name='product'),
    # path('info/', views.AdminAPIDetail.as_view(), name='info'),

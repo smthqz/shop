@@ -44,6 +44,11 @@ def getAllSubCategory(request):
     serializer = SubCategorySerializer(products, many=True)
     return Response(serializer.data)
 
-
+@api_view(['GET'])
+def getPopularProducts(request):
+    products = Product.objects.all()
+    products = products.filter(id__in=[7, 1, 8, 13])
+    serializer = ProductSerializer(products, many=True)
+    return Response(serializer.data)
 
 
