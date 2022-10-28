@@ -9,6 +9,7 @@ class Product(models.Model):
     articul = models.CharField(max_length=16, blank=True)
     subcategoryId = models.ForeignKey('SubCategory', on_delete=models.PROTECT, null=True)
     category_id = models.ForeignKey('Category', on_delete=models.PROTECT, null=True)
+    isBoolean = models.BooleanField(default=True, verbose_name="В наличие")
 
     def __str__(self):
         return self.title
