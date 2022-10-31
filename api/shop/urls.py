@@ -1,3 +1,5 @@
+from django.conf import settings
+from django.conf.urls.static import static
 from django.urls import path
 
 from shop.views import *
@@ -9,6 +11,8 @@ urlpatterns = [
     path('category/<str:pk>', getCategory),
     path('subcategory/all/', getAllSubCategory),
     path('products/popular/', getPopularProducts),
+
+
   #  path('products/', views.ProductsAPIList.as_view(), name='products'),
    # path('products/<str:pk>/', views.ProductsAPIDetailView.as_view(), name='product'),
    # path('info/', views.AdminAPIDetail.as_view(), name='info'),
@@ -18,5 +22,6 @@ urlpatterns = [
    # path('cart/<str:pk>/', views.CartAPIDetail.as_view(), name='cart_detail'),
    # path('order/', views.OrderAPIList.as_view(), name='order'),
   #  path('name/', views.CategoryAPIList.as_view(), name='name'),
+
 
 ]
