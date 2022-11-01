@@ -39,7 +39,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'shop.apps.ShopConfig',
     'rest_framework',
+    'rest_framework.authtoken',
     'corsheaders',
+    'rest_framework_simplejwt.token_blacklist',
 ]
 
 MIDDLEWARE = [
@@ -139,3 +141,5 @@ REST_FRAMEWORK = {
     ]
 }
 APPEND_SLASH = False
+ROTATE_REFRESH_TOKENS = True
+BLACKLIST_AFTER_ROTATION = True

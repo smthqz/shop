@@ -2,12 +2,20 @@ from django.shortcuts import render
 from django.http import JsonResponse
 from django.shortcuts import render
 from rest_framework import generics, viewsets
+from rest_framework.authentication import BasicAuthentication
 
-from rest_framework.decorators import api_view
+from rest_framework.permissions import IsAuthenticated, AllowAny
+from rest_framework.decorators import api_view, permission_classes, authentication_classes
+from rest_framework.permissions import IsAuthenticated
+from rest_framework.request import Request
 from rest_framework.response import Response
 from .serializers import *
 # Create your views here.
 from rest_framework.decorators import api_view
+
+from .serializers import UserSerializer
+from rest_framework.authtoken.models import Token
+from django.contrib.auth import authenticate
 
 from .models import *
 from .serializers import ProductSerializer
@@ -51,6 +59,7 @@ def getPopularProducts(request):
     serializer = ProductSerializer(products, many=True)
     return Response(serializer.data)
 
-
-
+class UserViewSet(viewsets.ModelViewSet):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
 
