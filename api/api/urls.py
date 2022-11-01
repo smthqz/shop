@@ -22,6 +22,6 @@ from shop import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include('shop.urls')),
-    path('auth/', obtain_auth_token),
+    #path('auth/', obtain_auth_token),
 
 ]

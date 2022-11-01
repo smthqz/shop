@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import JsonResponse
 from django.shortcuts import render
-from rest_framework import generics, viewsets
+from rest_framework import generics, viewsets, status
 from rest_framework.authentication import BasicAuthentication
 
 from rest_framework.permissions import IsAuthenticated, AllowAny
@@ -9,6 +9,8 @@ from rest_framework.decorators import api_view, permission_classes, authenticati
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.request import Request
 from rest_framework.response import Response
+from rest_framework.views import APIView
+
 from .serializers import *
 # Create your views here.
 from rest_framework.decorators import api_view

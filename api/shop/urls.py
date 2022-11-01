@@ -1,6 +1,6 @@
 from django.conf import settings
 from django.conf.urls.static import static
-from django.urls import path, include
+from django.urls import path, include, re_path
 from rest_framework import routers
 from shop.views import *
 
@@ -14,5 +14,7 @@ urlpatterns = [
     path('category/<str:pk>', getCategory),
     path('subcategory/all/', getAllSubCategory),
     path('products/popular/', getPopularProducts),
-    path('', include(router.urls)),
+    #path('', include(router.urls)),
+    path('auth/', include('djoser.urls')),
+    re_path(r'^auth/', include('djoser.urls.authtoken')),
 ]
