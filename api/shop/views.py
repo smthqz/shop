@@ -52,3 +52,5 @@ def getPopularProducts(request):
     return Response(serializer.data)
 
 
+
+
