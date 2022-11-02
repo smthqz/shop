@@ -65,3 +65,23 @@ class UserViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all()
     serializer_class = UserSerializer
 
+@api_view(['GET'])
+def getAllOrders(request):
+    orders = Order.objects.all()
+    serializer = OrderSerializer(orders, many=True)
+    return Response(serializer.data)
+
+class OrderSet(generics.CreateAPIView):
+    queryset = Order.objects.all()
+    serializer_class = OrderSerializer
+
+@api_view(['GET'])
+def getCart(request, pk):
+    cart = Cart.objects.get(_id=pk)
+    serializer = CartSerializer(cart, many=False)
+    return Response(serializer.data)
+
+
+class CartSet(generics.ListCreateAPIView):
+    queryset = Cart.objects.all()
+    serializer_class = CartSerializer

@@ -4,7 +4,7 @@ from rest_framework.serializers import ModelSerializer
 from rest_framework.authentication import TokenAuthentication
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.authtoken.models import Token
-from shop.models import Product, Category, SubCategory
+from shop.models import Product, Category, SubCategory, Order, Cart
 from rest_framework.serializers import Serializer, ModelSerializer, CharField
 
 class ProductSerializer(ModelSerializer):
@@ -34,3 +34,12 @@ class UserSerializer(serializers.ModelSerializer):
         Token.objects.create(user=user)
         return user
 
+class OrderSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Order
+        fields = '__all__'
+
+class CartSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Cart
+        fields = '__all__'

@@ -14,7 +14,10 @@ urlpatterns = [
     path('category/<str:pk>', getCategory),
     path('subcategory/all/', getAllSubCategory),
     path('products/popular/', getPopularProducts),
-    #path('', include(router.urls)),
+    path('orders/', getAllOrders),
+    path('orders/new/', OrderSet.as_view()),
+    path('cart/<str:pk>', getCart),
+    path('carts/', CartSet.as_view()),
     path('auth/', include('djoser.urls')),
     re_path(r'^auth/', include('djoser.urls.authtoken')),
 ]
