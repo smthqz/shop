@@ -85,3 +85,23 @@ def getCart(request, pk):
 class CartSet(generics.ListCreateAPIView):
     queryset = Cart.objects.all()
     serializer_class = CartSerializer
+
+@api_view(['GET'])
+def getProductsBySort(request, s):
+    products = Product.objects.all().order_by(f'{s}')
+    serializer = ProductSerializer(products, many=True)
+    return Response(serializer.data)
+
+@api_view(['GET'])
+def getProductsBySortDown(request, s):
+    products = Product.objects.all().order_by(f'-{s}')
+    serializer = ProductSerializer(products, many=True)
+    return Response(serializer.data)
+
+
+@api_view(['GET'])
+def getProductBySubcategory(request, pk):
+    products = Product.objects.all()
+    products = products.filter(category_id=pk)
+    serializer = ProductSerializer(products, many=True)
+    return Response(serializer.data)
