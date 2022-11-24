@@ -6,7 +6,7 @@ from django.contrib.auth.models import User
 # Create your models here.
 
 class Product(models.Model):
-    user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
+    user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True)
     title = models.TextField()
     price = models.IntegerField(blank=True, null=True)
     image = models.ImageField(blank=True, upload_to='images/')
@@ -33,7 +33,7 @@ class SubCategory(models.Model):
     image = models.ImageField(blank=True, upload_to='images/')
 
     def __str__(self):
-      return self.name
+      return str(self.id)
 
 class Order(models.Model):
     _id = models.AutoField(primary_key=True, editable=False)

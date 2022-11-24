@@ -22,5 +22,6 @@ urlpatterns = [
     path('cart/<str:pk>', getCart),
     path('carts/', CartSet.as_view()),
     path('auth/', include('djoser.urls')),
+    path('search/', ProductList.as_view()),
     re_path(r'^auth/', include('djoser.urls.authtoken')),
 ]

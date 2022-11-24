@@ -1,20 +1,20 @@
 from django.shortcuts import render
 from django.http import JsonResponse
 from django.shortcuts import render
+import django_filters.rest_framework
+from rest_framework.filters import SearchFilter
+from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import generics, viewsets, status
 from rest_framework.authentication import BasicAuthentication
-
 from rest_framework.permissions import IsAuthenticated, AllowAny
 from rest_framework.decorators import api_view, permission_classes, authentication_classes
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.request import Request
 from rest_framework.response import Response
 from rest_framework.views import APIView
-
 from .serializers import *
 # Create your views here.
 from rest_framework.decorators import api_view
-
 from .serializers import UserSerializer
 from rest_framework.authtoken.models import Token
 from django.contrib.auth import authenticate
@@ -105,3 +105,23 @@ def getProductBySubcategory(request, pk):
     products = products.filter(category_id=pk)
     serializer = ProductSerializer(products, many=True)
     return Response(serializer.data)
+
+class ProductListSearch(generics.ListAPIView):
+    serializer_class = ProductSerializer
+
+    def get_queryset(self):
+        """
+        This view should return a list of all the purchases
+        for the currently authenticated user.
+        """
+        user = self.request.user
+        return Product.objects.filter(purchaser=user)
+
+
+class ProductList(generics.ListAPIView):
+    queryset = Product.objects.all()
+    serializer_class = ProductSerializer
+    filter_backends = [DjangoFilterBackend, SearchFilter]
+    #filterset_fields = ['title']
+    search_fields = ('title',)
+

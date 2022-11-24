@@ -21,11 +21,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'django-insecure-nozj@8(_41%8k@02iy!v2&x_r%+tud!a=hb&9466wjzm$a@ddq'
-
+#SECRET_KEY = os.environ['SECRET_KEY']
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = ['192.168.1.66', '192.168.1.65', '127.0.0.1', 'localhost', 'wpad.beeline']
+ALLOWED_HOSTS = ['192.168.1.66', '192.168.1.65', '127.0.0.1', 'localhost', 'wpad.beeline', '192.168.1.68']
 
 
 # Application definition
@@ -43,6 +43,8 @@ INSTALLED_APPS = [
     'djoser',
     'corsheaders',
     'rest_framework_simplejwt.token_blacklist',
+    'django_filters',
+'rest_framework_word_filter',
 ]
 
 MIDDLEWARE = [
@@ -137,6 +139,7 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 REST_FRAMEWORK = {
+    'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend'],
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.AllowAny',
     ],
