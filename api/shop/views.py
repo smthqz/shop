@@ -124,3 +124,5 @@ class ProductList(generics.ListAPIView):
     filter_backends = [DjangoFilterBackend, SearchFilter]
     #filterset_fields = ['title']
     search_fields = ('title',)
+
+#saasadqwdq
