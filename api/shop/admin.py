@@ -1,7 +1,7 @@
 from django.contrib import admin
 
 # Register your models here.
-from rest_framework.authtoken.admin import User
+#from rest_framework.authtoken.admin import User
 
 from shop.models import Product, Category, SubCategory, Cart, Order
 

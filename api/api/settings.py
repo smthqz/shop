@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-nozj@8(_41%8k@02iy!v2&x_r%+tud!a=hb&9466wjzm$a@ddq
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['192.168.1.66', '192.168.1.65', '127.0.0.1', 'localhost', 'wpad.beeline', '192.168.1.68']
+ALLOWED_HOSTS = ['192.168.1.66', '192.168.1.65', '127.0.0.1', 'localhost', 'wpad.beeline', '192.168.1.68', 'aaaa228.pythonanywhere.com']
 
 
 # Application definition
@@ -39,7 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'shop.apps.ShopConfig',
     'rest_framework',
-    'rest_framework.authtoken',
+'knox',
     'djoser',
     'corsheaders',
     'rest_framework_simplejwt.token_blacklist',
@@ -145,9 +145,10 @@ REST_FRAMEWORK = {
         'rest_framework.permissions.AllowAny',
     ],
     'DEFAULT_AUTHENTICATION_CLASSES': (
-        'rest_framework.authentication.TokenAuthentication',
-        'rest_framework.authentication.BasicAuthentication',
-        'rest_framework.authentication.SessionAuthentication',
+        #'rest_framework.authentication.TokenAuthentication',
+        #'rest_framework.authentication.BasicAuthentication',
+        #'rest_framework.authentication.SessionAuthentication',
+'knox.auth.TokenAuthentication',
     ),
 }
 APPEND_SLASH = False

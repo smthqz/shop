@@ -3,7 +3,8 @@ from django.conf.urls.static import static
 from django.urls import path, include, re_path
 from rest_framework import routers
 from shop.views import *
-
+from .views import LoginAPI
+from knox import views as knox_views
 router = routers.DefaultRouter()
 router.register('users', UserViewSet)
 
@@ -24,4 +25,8 @@ urlpatterns = [
     path('auth/', include('djoser.urls')),
     path('search/', ProductList.as_view()),
     re_path(r'^auth/', include('djoser.urls.authtoken')),
+    path('register/', RegisterAPI.as_view(), name='register'),
+    path('login/', LoginAPI.as_view(), name='login'),
+    path('logout/', knox_views.LogoutView.as_view(), name='logout'),
+    path('logoutall/', knox_views.LogoutAllView.as_view(), name='logoutall'),
 ]
