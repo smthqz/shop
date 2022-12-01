@@ -23,9 +23,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-nozj@8(_41%8k@02iy!v2&x_r%+tud!a=hb&9466wjzm$a@ddq'
 #SECRET_KEY = os.environ['SECRET_KEY']
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ['192.168.1.66', '192.168.1.65', '127.0.0.1', 'localhost', 'wpad.beeline', '192.168.1.68', 'aaaa228.pythonanywhere.com']
+ALLOWED_HOSTS = ['192.168.1.66', '192.168.1.65', '127.0.0.1', 'localhost', 'wpad.beeline', '192.168.1.68', 'aaaa228.pythonanywhere.com', 'https://kkkkss.pythonanywhere.com/']
 
 
 # Application definition
@@ -154,3 +154,6 @@ REST_FRAMEWORK = {
 APPEND_SLASH = False
 ROTATE_REFRESH_TOKENS = True
 BLACKLIST_AFTER_ROTATION = True
+REST_KNOX = {
+       'TOKEN_TTL': None,  # will create tokens that never expire
+    }
