@@ -5,6 +5,7 @@ from rest_framework.authtoken.models import Token
 from django.contrib.auth.models import AbstractUser
 from .managers import UserManager
 from django.contrib.auth.models import AbstractUser
+from phone_field import PhoneField
 
 # Create your models here.
 
@@ -42,12 +43,15 @@ class SubCategory(models.Model):
 
 class Order(models.Model):
     _id = models.AutoField(primary_key=True, editable=False)
-    date_created = models.DateTimeField(auto_now_add=False, null=True, blank=True)
-    date_payment = models.DateTimeField(auto_now_add=False, null=True, blank=True)
-    date_modification = models.DateTimeField(auto_now_add=False, null=True, blank=True)
+    date_created = models.DateTimeField(auto_now_add=True, null=True, blank=True)
+    date_payment = models.DateTimeField(auto_now_add=True, null=True, blank=True)
+    date_modification = models.DateTimeField(auto_now_add=True, null=True, blank=True)
     comment = models.TextField(blank=True, null=True)
     totalPrice = models.DecimalField(max_digits=7, decimal_places=2, null=True, blank=True)
-    user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
+    user_data = models.TextField(blank=True, null=True)
+    phone_number = PhoneField(blank=True, help_text='Contact phone number')
+    addres = models.TextField(blank=True, null=True)
 
     def __str__(self):
         return str(self._id)

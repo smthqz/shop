@@ -22,4 +22,5 @@ from shop import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include('shop.urls')),
+
 ]

@@ -13,7 +13,7 @@ from rest_framework.filters import SearchFilter
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import generics, viewsets, status
 from rest_framework.authentication import BasicAuthentication
-from rest_framework.permissions import IsAuthenticated, AllowAny
+from rest_framework.permissions import IsAuthenticated, AllowAny, IsAuthenticatedOrReadOnly
 from rest_framework.decorators import api_view, permission_classes, authentication_classes
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.request import Request
@@ -78,9 +78,18 @@ def getAllOrders(request):
     serializer = OrderSerializer(orders, many=True)
     return Response(serializer.data)
 
-class OrderSet(generics.CreateAPIView):
+class OrderSet(generics.ListCreateAPIView):
     queryset = Order.objects.all()
     serializer_class = OrderSerializer
+    #permission_classes = (IsAuthenticatedOrReadOnly,)
+
+    #def pre_save(self, obj):
+        #obj.user_id = self.user.id
+
+
+
+
+
 
 @api_view(['GET'])
 def getCart(request, pk):
@@ -168,3 +177,4 @@ def getUser(request, pk):
     user = User.objects.get(id=pk)
     serializer = UserSerializer(user, many=False)
     return Response(serializer.data)
+

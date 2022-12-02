@@ -31,4 +31,5 @@ urlpatterns = [
     path('logoutall/', knox_views.LogoutAllView.as_view(), name='logoutall'),
     path('users/', getAllUsers),
     path('users/<str:pk>', getUser),
+
 ]
