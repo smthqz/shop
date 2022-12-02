@@ -35,11 +35,10 @@ class SubCategorySerializer(ModelSerializer):
 #        return user
 
 class OrderSerializer(serializers.ModelSerializer):
-    user = serializers.HiddenField(default=serializers.CurrentUserDefault())
     class Meta:
         model = Order
-        fields = ('_id', 'comment', 'totalPrice', 'user_data', 'phone_number', 'addres', 'user')
-        #user_id = serializers.Field(source='user.id')
+        fields = ('id', 'comment', 'totalPrice', 'user_data', 'phone_number', 'addres', 'user')
+        user_id = serializers.Field(source='user.id')
 
 class CartSerializer(serializers.ModelSerializer):
     class Meta:

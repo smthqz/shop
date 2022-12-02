@@ -21,6 +21,7 @@ urlpatterns = [
     path('products/sort/down/<str:s>', getProductsBySortDown),
     path('orders/new/', OrderSet.as_view()),
     path('cart/<str:pk>', getCart),
+    path('order/<str:pk>', getOrder),
     path('carts/', CartSet.as_view()),
     path('auth/', include('djoser.urls')),
     path('search/', ProductList.as_view()),

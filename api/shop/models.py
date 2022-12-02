@@ -42,7 +42,7 @@ class SubCategory(models.Model):
       return str(self.id)
 
 class Order(models.Model):
-    _id = models.AutoField(primary_key=True, editable=False)
+    id = models.AutoField(primary_key=True, editable=False)
     date_created = models.DateTimeField(auto_now_add=True, null=True, blank=True)
     date_payment = models.DateTimeField(auto_now_add=True, null=True, blank=True)
     date_modification = models.DateTimeField(auto_now_add=True, null=True, blank=True)
@@ -54,7 +54,7 @@ class Order(models.Model):
     addres = models.TextField(blank=True, null=True)
 
     def __str__(self):
-        return str(self._id)
+        return str(self.id)
 
 class Cart(models.Model):
     _id = models.AutoField(primary_key=True, editable=False)

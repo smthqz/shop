@@ -86,7 +86,11 @@ class OrderSet(generics.ListCreateAPIView):
     #def pre_save(self, obj):
         #obj.user_id = self.user.id
 
-
+@api_view(['GET'])
+def getOrder(request, pk):
+    order = Order.objects.get(id=pk)
+    serializer = OrderSerializer(order, many=False)
+    return Response(serializer.data)
 
 
 
