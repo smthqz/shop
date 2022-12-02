@@ -1,3 +1,4 @@
+from django.contrib.auth import authenticate
 from django.contrib.auth.models import User
 from rest_framework import serializers
 from rest_framework.serializers import ModelSerializer
@@ -37,7 +38,7 @@ class SubCategorySerializer(ModelSerializer):
 class OrderSerializer(serializers.ModelSerializer):
     class Meta:
         model = Order
-        fields = ('id', 'comment', 'totalPrice', 'user_data', 'phone_number', 'addres', 'user')
+        fields = '__all__'
         user_id = serializers.Field(source='user.id')
 
 class CartSerializer(serializers.ModelSerializer):
@@ -62,3 +63,13 @@ class RegisterSerializer(serializers.ModelSerializer):
         user = User.objects.create_user(validated_data['username'], validated_data['email'], validated_data['password'])
 
         return user
+
+class LoginSerializer(serializers.Serializer):
+    username = serializers.CharField()
+    password = serializers.CharField()
+
+    def validate(self, data):
+        user = authenticate(**data)
+        if user and user.is_active:
+            return user
+        raise serializers.ValidationError('Incorrect Credentials Passed.')
